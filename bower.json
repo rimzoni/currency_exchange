@@ -1,0 +1,6 @@
+{
+    "name": "currency_transfer",
+    "dependencies": {
+      "bootstrap": "~3.3.5"
+    }
+}
