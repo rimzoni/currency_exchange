@@ -38,15 +38,7 @@ Route::get('/orders', 'WebAppController@orders');
 | New route group will be added with prefix v2 with duplicated controllers
 |
 */
-// index() - for displaying list of the resource
-// - create() - this displays the form for creating the school resource
-// - store() - this is for the submit request of the form to create a school
-// - show($id) - this displays a single school
-// - edit($id) - display edit form a single school
-// - update($id) - update a school
-// - destroy($id) - delete
-// ,
-//           ['except' => ['edit', 'update', 'destroy']]));
+
 Route::group(array('prefix' => 'api/v1'), function()
     {
       Route::get('orders/updateStatus', 'OrdersController@updateStatus');
