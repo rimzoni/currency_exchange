@@ -31,7 +31,7 @@
 					      <td><% order.purchased_amount %></td>
 					      <td><% order.paid_amount %></td>
 					      <td><% order.surcharge_amount %></td>
-					      <td><% order.surcharge_amount %>%</td>
+					      <td><% order.surcharge_percentage %>%</td>
 					      <td><% order.discount_amount %></td>
 					      <td><% order.discount_percentage %></td>
 					      <td><% order.status==1? 'Confirmed' : 'Prepared' %></td>
