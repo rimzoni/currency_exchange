@@ -17,24 +17,15 @@ class CalculationsController extends Controller
   }
 
   public function calculateRate(CalculateRequest $request){
-    $errors = array();
+
     $exchangeCurrency = $request->input('exchangeCurrency');
     $exchangeValue = $request->input('exchangeValue');
     $sendingAmount = $request->input('sendingAmount');
     $receivingAmount = $request->input('receivingAmount');
 
-    if (empty($exchangeCurrency) && empty($exchangeValue))
-      $errors['exchangeRate'] = 'Please select prefered exchanged rate.';
-
-    if (empty($sendingAmount) && empty($receivingAmount) )
-      $errors['sendingAmount'] = 'Sending or Receiving amount is required.';
-
     try{
       $statusCode = 200;
       $response = [];
-      if (!empty($errors)){
-        $response= ['errors' => $errors];
-      }
 
       $data= array('exchangeCurrency' => $exchangeCurrency,
       'exchangeValue' => $exchangeValue,
