@@ -25,7 +25,7 @@ class Calculations {
         $sendingAmount = $data['sendingAmount'];
         $receivingAmount = $data['receivingAmount'];
         $response =[];
-        if($sendingAmount!=null && $sendingAmount!='' && empty($errors)){
+        if($sendingAmount!=null && $sendingAmount!=''){
           $sendingAmount = $this->calculateSendingAmount($sendingAmount,$exchangeValue);
           $response = ['method' => 'PAY', 'value' => $sendingAmount];
         }else if ($receivingAmount!=null && $receivingAmount!='' && $sendingAmount==null && empty($errors)){
