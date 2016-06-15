@@ -21,9 +21,16 @@
 					      <td><% discount.currency %></td>
 					      <td><% discount.percentage %></td>
 					      <td><% discount.created_at %></td>
-								<!-- <td><span class="giglyphicon giglyphicon-edit"></span></td> -->
+								<td><a><span ng-click="showEditDiscount($index)" class="glyphicon glyphicon-pencil"></span></a></td>
 								<td><a><span ng-click="removeDiscount($index)" class="glyphicon glyphicon-minus"></span></a></td>
              </tr>
+						 <tr ng-hide="editDiscount">
+							 <td><input type="text" class="form-control" ng-model="edit_currency"  ></td>
+							 <td><input type="text" class="form-control" ng-model="edit_percentage"  ></td>
+							 <td></td>
+							 <td><a><span ng-click="saveEditedDiscount(edit_index)" class="glyphicon glyphicon-floppy-save"></span></a></td>
+							 <td></td>
+							</tr>
 					  </tbody>
 					</table>
 

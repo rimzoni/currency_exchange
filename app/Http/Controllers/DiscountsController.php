@@ -62,6 +62,17 @@ class DiscountsController extends Controller
     }
   }
 
+  public function update($id){
+    try{
+      $statusCode =200;
+      $discount = $this->discount->update($id);
+    }catch (Exception $e){
+        $statusCode = 400;
+    }finally{
+      return response()->json($discount, $statusCode);
+    }
+  }
+
   public function destroy($id){
     try{
         $statusCode =204;

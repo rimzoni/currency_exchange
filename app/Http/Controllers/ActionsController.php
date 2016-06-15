@@ -62,6 +62,17 @@ class ActionsController extends Controller
     }
   }
 
+  public function update($id){
+    try{
+      $statusCode =200;
+      $action = $this->action->update($id);
+    }catch (Exception $e){
+        $statusCode = 400;
+    }finally{
+      return response()->json($action, $statusCode);
+    }
+  }
+
   public function destroy($id){
     try{
         $statusCode =204;

@@ -21,9 +21,16 @@
 					      <td><% surcharge.currency %></td>
 					      <td><% surcharge.percentage %></td>
 					      <td><% surcharge.created_at %></td>
-								<td><span class="giglyphicon giglyphicon-edit"></span></td>
+								<td><a><span ng-click="showEditSurcharge($index)" class="glyphicon glyphicon-pencil"></span></a></td>
 								<td><a><span ng-click="removeSurcharge($index)" class="glyphicon glyphicon-minus"></span></a></td>
              </tr>
+						 <tr ng-hide="editSurcharge">
+							 <td><input type="text" class="form-control" ng-model="edit_currency"  ></td>
+							 <td><input type="text" class="form-control" ng-model="edit_percentage"  ></td>
+							 <td></td>
+							 <td><a><span ng-click="saveEditedSurcharge(edit_index)" class="glyphicon glyphicon-floppy-save"></span></a></td>
+							 <td></td>
+							</tr>
 					  </tbody>
 					</table>
 

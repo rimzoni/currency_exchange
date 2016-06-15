@@ -85,6 +85,9 @@ app.controller('currencyTransferController', function($scope, $http,$timeout) {
 		$scope.confirmed = true;
 		$scope.removedOrder= true;
 		$scope.editEmail = true;
+		$scope.editAction = true;
+		$scope.editSurcharge = true;
+		$scope.editDiscount = true;
 	};
 	//calculations
 	$scope.calculateTotalAmount = function (){
@@ -231,6 +234,38 @@ app.controller('currencyTransferController', function($scope, $http,$timeout) {
 		$http.delete($scope.apiPath + 'actions/' + action.id)
 			.success(function() {
 				$scope.actions.splice(index, 1);
+				$scope.loading = false;
+			});;
+	};
+
+	//display edit action
+	$scope.showEditAction = function(index) {
+		$scope.loading = true;
+		$scope.editAction= false;
+
+		var action = $scope.actions[index];
+
+		$scope.edit_currency = action.currency;
+		$scope.edit_has_action = action.has_action==1?true:false ;
+		$scope.edit_action = action.action;
+		$scope.edit_index = index;
+
+	};
+
+	//edit action
+	$scope.saveEditedAction = function(index) {
+		$scope.loading = true;
+		var action = $scope.actions[index];
+
+
+		$http.put($scope.apiPath + 'actions/' + action.id,{
+			currency: $scope.edit_currency,
+			has_action: JSON.parse($scope.edit_has_action),
+			action: $scope.edit_action
+		})
+			.success(function(data, status, headers, config) {
+				$scope.actions[index] = data;
+				$scope.editAction = true;
 				$scope.loading = false;
 			});;
 	};
@@ -388,6 +423,36 @@ app.controller('currencyTransferController', function($scope, $http,$timeout) {
 			});;
 	};
 
+		//display edit discount
+		$scope.showEditDiscount = function(index) {
+			$scope.loading = true;
+			$scope.editDiscount = false;
+
+			var discount = $scope.discounts[index];
+
+			$scope.edit_currency = discount.currency;
+			$scope.edit_percentage = discount.percentage;
+			$scope.edit_index = index;
+
+		};
+
+		//edit discount
+		$scope.saveEditedDiscount = function(index) {
+			$scope.loading = true;
+			var discount = $scope.discounts[index];
+
+
+			$http.put($scope.apiPath + 'discounts/' + discount.id,{
+				currency: $scope.edit_currency,
+				percentage: $scope.edit_percentage
+			})
+				.success(function(data, status, headers, config) {
+					$scope.discounts[index] = data;
+					$scope.editDiscount = true;
+					$scope.loading = false;
+				});;
+		};
+
 	//surcharge
 	$scope.getSurcharge= function(exchangeCurrencyName,  sendingAmount){
 	//return surcharge
@@ -446,6 +511,36 @@ app.controller('currencyTransferController', function($scope, $http,$timeout) {
 		$http.delete($scope.apiPath + 'surcharges/' + surcharge.id)
 			.success(function() {
 				$scope.surcharges.splice(index, 1);
+				$scope.loading = false;
+			});;
+	};
+
+	//display edit surcharge
+	$scope.showEditSurcharge = function(index) {
+		$scope.loading = true;
+		$scope.editSurcharge = false;
+
+		var surcharge = $scope.surcharges[index];
+
+		$scope.edit_currency = surcharge.currency;
+		$scope.edit_percentage = surcharge.percentage;
+		$scope.edit_index = index;
+
+	};
+
+	//edit surcharge
+	$scope.saveEditedSurcharge = function(index) {
+		$scope.loading = true;
+		var surcharge = $scope.surcharges[index];
+
+
+		$http.put($scope.apiPath + 'surcharges/' + surcharge.id,{
+			currency: $scope.edit_currency,
+			percentage: $scope.edit_percentage
+		})
+			.success(function(data, status, headers, config) {
+				$scope.surcharges[index] = data;
+				$scope.editSurcharge = true;
 				$scope.loading = false;
 			});;
 	};

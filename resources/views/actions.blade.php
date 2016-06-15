@@ -20,12 +20,20 @@
 					  <tbody>
 					    <tr ng-repeat="action in actions">
 					      <td><% action.currency %></td>
-					      <td><% action.has_action %></td>
+					      <td><% action.has_action==1?'true':'false' %></td>
 					      <td><% action.action %></td>
 					      <td><% action.created_at %></td>
-								<!-- <td><span class="giglyphicon giglyphicon-edit"></span></td> -->
+								<td><a><span ng-click="showEditAction($index)" class="glyphicon glyphicon-pencil"></span></a></td>
 								<td><a><span ng-click="removeAction($index)" class="glyphicon glyphicon-minus"></span></a></td>
              </tr>
+						 <tr ng-hide="editAction">
+							 <td><input type="text" class="form-control" ng-model="edit_currency"  ></td>
+							 <td><input type="text" class="form-control" ng-model="edit_has_action"  ></td>
+							 <td><input type="text" class="form-control" ng-model="edit_action"  ></td>
+							 <td></td>
+							 <td><a><span ng-click="saveEditedAction(edit_index)" class="glyphicon glyphicon-floppy-save"></span></a></td>
+							 <td></td>
+							</tr>
 					  </tbody>
 					</table>
 

@@ -42,7 +42,7 @@ class DbEmailRepository implements EmailRepositoryInterface {
 		if(Input::get('template'))
 		$email->template = Input::get('template');
 		$email->save();
-		
+
 		return $email;
 	}
 

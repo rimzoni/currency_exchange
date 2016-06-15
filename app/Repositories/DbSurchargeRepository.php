@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Models\Surcharge;
+use Illuminate\Support\Facades\Input;
 use App\Repositories\Interfaces\SurchargeRepositoryInterface;
 
 class DbSurchargeRepository implements SurchargeRepositoryInterface {
@@ -26,6 +27,17 @@ class DbSurchargeRepository implements SurchargeRepositoryInterface {
 	public function find($currencyName)
 	{
 		return Surcharge::currency($currencyName)->firstOrFail();
+	}
+
+	public function update($id){
+		$surcharge = Surcharge::find($id);
+		if(Input::get('currency'))
+		$surcharge->currency = Input::get('currency');
+		if(Input::get('percentage'))
+		$surcharge->percentage = Input::get('percentage');
+		$surcharge->save();
+
+		return $surcharge;
 	}
 
 	public function delete($id)

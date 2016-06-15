@@ -65,6 +65,17 @@ class SurchargesController extends Controller
     }
   }
 
+  public function update($id){
+    try{
+      $statusCode =200;
+      $surcharge = $this->surcharge->update($id);
+    }catch (Exception $e){
+        $statusCode = 400;
+    }finally{
+      return response()->json($surcharge, $statusCode);
+    }
+  }
+
   public function getAmountByPurchase(SurchargeAmountRequest $request){
 
     try{
@@ -83,14 +94,6 @@ class SurchargesController extends Controller
       return response()->json($response, $statusCode);
     }
   }
-
-  public function update($id) {
-		$surcharge = Surcharge::find($id);
-		$surcharge->done = $request->input('done');
-		$surcharge->save();
-
-		return $surcharge;
-	}
 
   public function destroy($id){
     try{
