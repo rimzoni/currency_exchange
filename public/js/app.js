@@ -84,6 +84,7 @@ app.controller('currencyTransferController', function($scope, $http,$timeout) {
 		$scope.sendingAmount_error = true;
 		$scope.confirmed = true;
 		$scope.removedOrder= true;
+		$scope.editEmail = true;
 	};
 	//calculations
 	$scope.calculateTotalAmount = function (){
@@ -301,6 +302,44 @@ app.controller('currencyTransferController', function($scope, $http,$timeout) {
 				$scope.loading = false;
 			});;
 	};
+
+	//display edit email
+	$scope.showEditEmail = function(index) {
+		$scope.loading = true;
+		$scope.editEmail = false;
+
+		var email = $scope.emails[index];
+
+		$scope.edit_email_currency = email.currency;
+		$scope.edit_email_from = email.from;
+		$scope.edit_email_to = email.to;
+		$scope.edit_email_subject = email.subject;
+		$scope.edit_email_template = email.template;
+		$scope.edit_index = index;
+
+	};
+
+	//edit email
+	$scope.saveEditedEmail = function(index) {
+		$scope.loading = true;
+
+		var email = $scope.emails[index];
+
+		$http.put($scope.apiPath + 'emails/' + email.id,{
+			currency: $scope.edit_email_currency,
+			from: $scope.edit_email_from,
+			to: $scope.edit_email_to,
+			subject: $scope.edit_email_subject,
+			template: $scope.edit_email_template,
+			csrf_token : $scope.csrf_token
+		})
+			.success(function(data, status, headers, config) {
+				$scope.emails[index] = data;
+				$scope.editEmail = true;
+				$scope.loading = false;
+			});;
+	};
+
 
 	//email
 	//create new discount

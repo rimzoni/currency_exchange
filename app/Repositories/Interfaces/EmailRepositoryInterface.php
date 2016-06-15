@@ -11,6 +11,8 @@ interface EmailRepositoryInterface {
 
 	public function store(array $data);
 
+	public function update($id);
+
 	public function delete($id);
 
 }

@@ -27,9 +27,19 @@
 					      <td><% email.subject %></td>
 					      <td><% email.template %></td>
 					      <td><% email.created_at %></td>
-								<!-- <td><span class="giglyphicon giglyphicon-edit"></span></td> -->
+								<td><a><span ng-click="showEditEmail($index)" class="glyphicon glyphicon-pencil"></span></a></td>
 								<td><a><span ng-click="removeEmail($index)" class="glyphicon glyphicon-minus"></span></a></td>
              </tr>
+						 <tr ng-hide="editEmail">
+							 <td><input type="text" class="form-control" ng-model="edit_email_currency"  ></td>
+							 <td><input type="email" class="form-control" ng-model="edit_email_from"  ></td>
+							 <td><input type="email" class="form-control" ng-model="edit_email_to"  ></td>
+							 <td><input type="text" class="form-control" ng-model="edit_email_subject"  ></td></td>
+							 <td><input type="text" class="form-control" ng-model="edit_email_template" ></td>
+							 <td></td>
+							 <td><a><span ng-click="saveEditedEmail(edit_index)" class="glyphicon glyphicon-floppy-save"></span></a></td>
+							 <td></td>
+							</tr>
 					  </tbody>
 					</table>
 

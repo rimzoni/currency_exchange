@@ -62,6 +62,17 @@ class EmailsController extends Controller
     }
   }
 
+  public function update($id){
+    try{
+      $statusCode =200;
+      $email = $this->email->update($id);
+    }catch (Exception $e){
+        $statusCode = 400;
+    }finally{
+      return response()->json($email, $statusCode);
+    }
+  }
+
   public function destroy($id){
     try{
         $statusCode =204;
